@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 
 exports.signUp = async (req, res) => {
     try {
-        const { username, email, image, password, confirmPassword } = req.body;
+        const { username, email, password, confirmPassword } = req.body;
+        const image = req.file;
         if (!(username && email && password && confirmPassword)) {
             res.status(400).json({ success: false, message: `All fields are required` });
             res.exit(0);
@@ -23,7 +24,7 @@ exports.signUp = async (req, res) => {
             const user = await User.create({
                 username,
                 email,
-                image,
+                image: image.path,
                 password: encryptedPassword,
             });
             res.status(201).json({ success:true, message: user });
