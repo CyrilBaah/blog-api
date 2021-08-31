@@ -11,6 +11,11 @@ exports.signUp = async (req, res) => {
             res.exit(0);
         }
 
+        if (!image) {
+            res.status(400).json({ success: false, message: `Image is required` });
+            res.exit(0);
+        }
+
         if (password !== confirmPassword) {
             res.status(400).json({ success: false, message: `Password does't match` });
             res.exit(0);
