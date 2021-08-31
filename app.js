@@ -29,6 +29,7 @@ const fileFilter = (req, file, cb) => {
 }
 app.use(multer({ storage , fileFilter }).single('image'));
 
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'))
 app.get('/', (req, res) => {
     res.status(200).json({ success: true, message: "Welcome to Blog API" })
 });
