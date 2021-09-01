@@ -40,3 +40,25 @@ exports.signUp = async (req, res) => {
         res.status(200).json({ success: false, message: error });
     }
 }
+
+
+exports.Login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!(email && password)) {
+            res.status(400).json({ success: false, message: "All fields are required" });
+        }
+
+        const user = await User.findOne({ where: { email } });
+        if (user && (await bcrypt.compare(password, user.password))) {
+            const token = jwt.sign({
+                userId: user.id, email
+            }, process.env.TOKEN_KEY, { expiresIn: "2h" });
+            res.status(200).json({ success: true, user: user, token })
+        } 
+        res.status(400).json({ success: false, message: "Invalid Credentials" });
+    } catch (error) {
+        console.log(error);
+        res.status(200).json({ success: false, message: error });
+    }
+}
