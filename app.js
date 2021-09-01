@@ -20,7 +20,10 @@ app.get('/', (req, res) => {
 
 
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post');
+
 app.use(userRoutes);
+app.use(postRoutes);
 
 
 const PORT = process.env.PORT;
