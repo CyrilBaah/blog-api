@@ -10,23 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/uploads')
-    },
-    filename: (req, file, cb) => {
-        const fileName = file.originalname.replace(' ','-');
-        cb(null, Date.now() + '-' + fileName);
-    }
-});
 
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
-        cb(null, true)
-    } else {
-        cb(null, false)
-    }
-}
+const { storage, fileFilter } = require('./helper/multer');
 app.use(multer({ storage , fileFilter }).single('image'));
 
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'))
