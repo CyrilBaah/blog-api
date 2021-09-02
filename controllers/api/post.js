@@ -47,4 +47,24 @@ exports.getASinglePost = async (req, res) => {
     }
 }
 
+exports.updatePost = async (req, res) => {
+    try {
+        const { uuid } = req.params;
+        const { title, content, userUuid } = req.body;
+        const post = await Post.findOne({ where: { id: uuid } });
+
+        if (post){
+            post.title = title;
+            post.content = content;
+            post.userUuid = userUuid;
+
+            post.save();
+            res.status(200).json({ message: `Post updated successfully`, post })
+        } 
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error });
+    }
+}
+
 
