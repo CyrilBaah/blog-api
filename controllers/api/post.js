@@ -47,6 +47,7 @@ exports.getASinglePost = async (req, res) => {
     }
 }
 
+
 exports.updatePost = async (req, res) => {
     try {
         const { uuid } = req.params;
@@ -67,4 +68,20 @@ exports.updatePost = async (req, res) => {
     }
 }
 
+
+exports.deletePost = async (req, res) => {
+    try {
+        const { uuid } = req.params;
+        const post = await Post.findOne({ where: { id: uuid } });
+
+        if (post) {
+            post.destroy();
+            res.status(204).json({ success: true });
+        }
+        return res.status(404).json({ success: false, message: `Post doesn't exist`});
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error });
+    }
+}
 
