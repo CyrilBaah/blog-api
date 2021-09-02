@@ -21,9 +21,12 @@ app.get('/', (req, res) => {
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
+const commentRoutes = require('./routes/comment');
+
 
 app.use(userRoutes);
 app.use(postRoutes);
+app.use(commentRoutes);
 
 
 const PORT = process.env.PORT;
