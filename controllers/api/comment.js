@@ -54,8 +54,6 @@ exports.editComment = async (req, res) => {
 exports.deleteComment = async (req, res) => {
     try {
         const { commentUuid } = req.params;
-
-        // console.log(uuid, commentUuid);
         const comment = await Comment.findOne({ where: { id: commentUuid } });
 
         if (comment) {
