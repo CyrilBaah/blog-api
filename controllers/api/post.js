@@ -33,4 +33,18 @@ exports.getAllPost = async (req, res) => {
     }
 }
 
+exports.getASinglePost = async (req, res) => {
+    try {
+        const { uuid } = req.params;
+        const post = await Post.findOne({ where: { id: uuid } });
+
+        if (post){
+            res.status(200).json({ success: true, message: post })
+        } 
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error });
+    }
+}
+
 
