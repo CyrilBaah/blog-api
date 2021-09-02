@@ -33,10 +33,17 @@ exports.getAllComments = async (req, res) => {
 
 exports.editComment = async (req, res) => {
     try {
-        const { uuid } = req.params;
-        console.log(uuid);
-        // const comment = Comment.findOne({ where: })
-        // res.status(201).json({ success: true, message: comments });
+        const { uuid, commentUuid } = req.params;
+        const { content, userUuid } = req.body;
+
+        const comment = await Comment.findOne({ where: { id: commentUuid } })
+        if (comment) {
+            comment.content = content;
+            comment.userUuid = userUuid;
+            comment.postUuid = uuid;
+            comment.save();
+            res.status(201).json({ success: true, message: comment });
+        }
     } catch (error) {
         console.log(error);
         res.status(400).json({ success: false, message: error });
