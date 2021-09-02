@@ -49,3 +49,21 @@ exports.editComment = async (req, res) => {
         res.status(400).json({ success: false, message: error });
     }
 }
+
+
+exports.deleteComment = async (req, res) => {
+    try {
+        const { commentUuid } = req.params;
+
+        // console.log(uuid, commentUuid);
+        const comment = await Comment.findOne({ where: { id: commentUuid } });
+
+        if (comment) {
+            comment.destroy();
+            res.status(204).json({ success: true });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success: false, message: error });
+    }
+}
