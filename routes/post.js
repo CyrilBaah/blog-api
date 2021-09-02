@@ -6,4 +6,5 @@ const auth = require('../helper/auth');
 router.post('/api/posts',auth, postController.createPost);
 router.get('/api/posts',auth, postController.getAllPost);
 
+
 module.exports = router;

@@ -1,16 +1,18 @@
 const { Post } = require('../../models');
+const { User } = require('../../models');
 
 exports.createPost = async (req, res) => {
     try {
-        const { title, content } = req.body;
-        if (!(title && content)) {
+        const { title, content, userUuid } = req.body;
+        if (!(title && content && userUuid)) {
             res.status(400).json({ success: false, message: "All fields are required" });
             res.exit(0);
         }
 
         const post = await Post.create({
             title,
-            content 
+            content,
+            userUuid 
         });
         return res.status(200).json({ success: true, message: post });
     } catch (error) {
@@ -30,3 +32,5 @@ exports.getAllPost = async (req, res) => {
         res.status(400).json({ success: false, message: error });
     }
 }
+
+
