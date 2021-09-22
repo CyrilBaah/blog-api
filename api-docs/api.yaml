@@ -37,7 +37,7 @@ paths:
         400:
           description: Bad request
         401:
-          description: Restaurant doesn't exist
+          description: User doesn't exist
 
   # Login
   /api/login:
@@ -57,7 +57,7 @@ paths:
         400:
           description: Bad request
         401:
-          description: Restaurant doesn't exist
+          description: User doesn't exist
 
 components:
   schemas:
