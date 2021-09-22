@@ -7,6 +7,7 @@ info:
 schemes: ["http", "https"]
 
 paths:
+  # Signup
   /api/signup:
     post:
       summary: Sign up
@@ -28,6 +29,26 @@ paths:
           in: formData
           required: true
         - name: confirmationpassword
+          in: formData
+          required: true
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Restaurant doesn't exist
+
+  # Login
+  /api/login:
+    post:
+      summary: Login
+      description: Login user
+      parameters:
+        - name: email
+          in: formData
+          required: true
+        - name: password
           in: formData
           required: true
       responses:
