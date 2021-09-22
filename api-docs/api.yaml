@@ -1,31 +1,60 @@
 swagger: "2.0"
 
 info:
-  title: "Swagger Docs"
+  title: Blog API
   version: 1.0
 
 schemes: ["http", "https"]
 
 paths:
-  /string:
-    get:
-      summary: "Returns a string"
-      description: "It just returns a fake string"
+  /api/signup:
+    post:
+      summary: Sign up
+      description: Registeration for new users
+      consumes:
+        - multipart/form-part
+      parameters:
+        - name: username
+          in: formData
+          required: true
+        - name: email
+          in: formData
+          required: true
+        - name: image
+          in: formData
+          required: true
+          type: file
+        - name: password
+          in: formData
+          required: true
+        - name: confirmationpassword
+          in: formData
+          required: true
       responses:
         200:
-          description: Success
-          schema:
-            type: "string"
-            example: "A fake string"
-
-
-
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Restaurant doesn't exist
 
 components:
-  securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
-      type: http
-      scheme: bearer
-      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
-security:
-  - bearerAuth: []   
+  schemas:
+    User:
+      type: object
+      example:
+        {
+          "username": "David",
+          "email": "david@email.com",
+          "password": "password",
+          "confirmPassword": "password",
+        }
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string

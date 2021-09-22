@@ -32,7 +32,7 @@ exports.signUp = async (req, res) => {
                 image: image.path,
                 password: encryptedPassword,
             });
-            res.status(201).json({ success:true, message: user });
+            res.status(200).json({ success:true, message: user });
         }
         res.status(400).json({ success: false, message: user });
     } catch (error) {
