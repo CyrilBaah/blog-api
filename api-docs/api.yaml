@@ -144,6 +144,8 @@ paths:
       responses:
         200:
           description: Successful operation
+        204:
+          description: Everything is good, nothing to return
         400:
           description: Bad request
         401:
