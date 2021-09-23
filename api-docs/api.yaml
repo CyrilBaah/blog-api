@@ -59,23 +59,67 @@ paths:
         401:
           description: User doesn't exist
 
+  # Create a new post
+  /api/posts:
+    post:
+      summary: Create a post
+      description: Create a new post
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+        - name: post
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/Post"
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
+    # Get all posts
+    get:
+      summary: Get all posts
+      description: Returns all posts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
 components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
   schemas:
-    User:
+    Post:
       type: object
       example:
         {
-          "username": "David",
-          "email": "david@email.com",
-          "password": "password",
-          "confirmPassword": "password",
+          "title": "post title",
+          "content": "Sint quaerat beatae voluptas repellat veniam sint.",
+          "userUuid": "8f82f0e2-b57a-4e04-878c-deeb5edd9b61",
         }
       properties:
-        username:
+        title:
           type: string
-        email:
+        content:
           type: string
-        password:
-          type: string
-        confirmPassword:
+        userUuid:
           type: string
