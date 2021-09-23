@@ -128,6 +128,27 @@ paths:
         401:
           description: Post doesn't exist
 
+    # Delete a post by uuid
+    delete:
+      summary: Delete a post by uuid
+      description: Delete a post
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+        - name: uuid
+          in: path
+          required: true
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
