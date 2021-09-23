@@ -59,10 +59,11 @@ paths:
         401:
           description: Restaurant doesn't exist
 
-    # Create a new post
+  # Create a new post
   /api/posts:
     post:
       summary: Create a post
+      description: Create a new post
       security:
         - bearerAuth: []
       parameters:
@@ -74,6 +75,24 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/Post"
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
+    # Get all posts
+    get:
+      summary: Get all posts
+      description: Returns all posts
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
       responses:
         200:
           description: Successful operation
