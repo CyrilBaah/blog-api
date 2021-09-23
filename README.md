@@ -19,7 +19,10 @@ $ npm install
 $ sequelize db:migrate
 ```
 
-# How to interact with APIs Endpoints locally
+# Interact with all API endpoints locally
+[API Docs](http://127.0.0.1:3000/api-docs)
+
+# How to interact with APIs Endpoints locally using Postman
 ### User
 
 `Prefix: http://127.0.0.1:3000` against endpoint. Example: `http://127.0.0.1:3000/api/signup`
