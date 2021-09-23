@@ -48,10 +48,9 @@ paths:
         - name: email
           in: formData
           required: true
-        - name: body
-          in: body
-          schema:
-            $ref: "#/components/schemas/User"
+        - name: password
+          in: formData
+          required: true
       responses:
         200:
           description: Successful operation
@@ -67,21 +66,28 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - name: header
+        - name: authorization
           in: header
           required: true
-        - name: password
-          in: formData
+        - name: post
+          in: body
           required: true
+          schema:
+            $ref: "#/components/schemas/Post"
       responses:
         200:
           description: Successful operation
         400:
           description: Bad request
         401:
-          description: Restaurant doesn't exist
+          description: Post doesn't exist
 
 components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
   schemas:
     Post:
       type: object
