@@ -101,6 +101,56 @@ paths:
         401:
           description: Post doesn't exist
 
+  # Update a post by uuid
+  /api/posts/{uuid}:
+    put:
+      summary: Update a post by uuid
+      description: Edit a post
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+        - name: uuid
+          in: path
+          required: true
+        - name: post
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/Post"
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
+    # Delete a post by uuid
+    delete:
+      summary: Delete a post by uuid
+      description: Delete a post
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+        - name: uuid
+          in: path
+          required: true
+      responses:
+        200:
+          description: Successful operation
+        204:
+          description: Everything is good, nothing to return
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
