@@ -151,6 +151,32 @@ paths:
         401:
           description: Post doesn't exist
 
+  # Create a comment
+  /api/{uuid}/comments:
+    post:
+      summary: Create a comment
+      description: Create a new comment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+        - name: uuid
+          in: path
+        - name: comments
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/Comment"
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
@@ -169,6 +195,18 @@ components:
       properties:
         title:
           type: string
+        content:
+          type: string
+        userUuid:
+          type: string
+    Comment:
+      type: object
+      example:
+        {
+          "content": "Sint quaerat beatae voluptas repellat veniam sint.",
+          "userUuid": "8f82f0e2-b57a-4e04-878c-deeb5edd9b61",
+        }
+      properties:
         content:
           type: string
         userUuid:
