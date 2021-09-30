@@ -184,6 +184,7 @@ components:
       scheme: bearer
       bearerFormat: JWT # optional, arbitrary value for documentation purposes
   schemas:
+    # Post schema
     Post:
       type: object
       example:
@@ -199,6 +200,8 @@ components:
           type: string
         userUuid:
           type: string
+
+    # Comment Schema
     Comment:
       type: object
       example:
