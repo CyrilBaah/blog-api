@@ -201,6 +201,36 @@ paths:
         401:
           description: Post doesn't exist
 
+  # Edit a comment
+  /api/{uuid}/comments/{commentUuid}:
+    put:
+      summary: Edit a comment
+      description: Create a new comment
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          required: true
+        - name: uuid
+          in: path
+        - name: commentUuid
+          in: path
+        - name: comment
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/Comment"
+      responses:
+        200:
+          description: Successful operation
+        201:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
 components:
   securitySchemes:
     bearerAuth: # arbitrary name for the security scheme
