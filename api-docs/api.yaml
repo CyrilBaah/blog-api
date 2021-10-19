@@ -28,7 +28,7 @@ paths:
         - name: password
           in: formData
           required: true
-        - name: confirmationpassword
+        - name: confirmPassword
           in: formData
           required: true
       responses:
