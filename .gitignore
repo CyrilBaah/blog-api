@@ -2,3 +2,5 @@ node_modules
 .env
 config/config.json
 /public/uploads/*
+coverages
+.nyc_output
