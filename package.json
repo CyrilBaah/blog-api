@@ -25,6 +25,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "^27.3.1",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.6"
@@ -36,9 +37,11 @@
     ]
   },
   "scripts": {
-    "test": "jest",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start-dev": "nodemon app.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
   },
   "author": "Cyril Baah",
   "license": "ISC"
