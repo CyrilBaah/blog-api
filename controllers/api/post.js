@@ -6,7 +6,6 @@ exports.createPost = async (req, res) => {
         const { title, content, userUuid } = req.body;
         if (!(title && content && userUuid)) {
             res.status(400).json({ success: false, message: "All fields are required" });
-            res.exit(0);
         }
 
         const post = await Post.create({
