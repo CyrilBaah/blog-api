@@ -28,6 +28,11 @@ $ npm start
 ```
 # Interact with all API endpoints locally
 [API Docs](http://127.0.0.1:3000/api-docs)
+## Note 
+When consuming API using Swagger for authorization add Bearer to token like this
+```sh
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NjM1MjY0Zi04YTgxLTQ4YmUtYjVkYy1lN2RlM2Q3Y2U3MDkiLCJlbWFpbCI6InVzZXJ0ZXN0QGVtYWlsLmNvbSIsImlhdCI6MTY1MTczNzI4MiwiZXhwIjoxNjUxNzQ0NDgyfQ.GIrXgbGjwvFxQ4FhGjrAA_MLMW1gTy5MLo1UXpg3hek
+```
 
 # How to interact with APIs Endpoints locally using Postman
 ### User
