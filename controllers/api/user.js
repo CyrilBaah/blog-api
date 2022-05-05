@@ -45,6 +45,7 @@ exports.signUp = async (req, res) => {
 exports.Login = async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(email, password);
         if (!(email && password)) {
             res.status(400).json({ success: false, message: "All fields are required" });
         }
@@ -55,8 +56,9 @@ exports.Login = async (req, res) => {
                 userId: user.id, email
             }, process.env.TOKEN_KEY, { expiresIn: "2h" });
             res.status(200).json({ success: true, user: user, token })
-        } 
-        res.status(400).json({ success: false, message: "Invalid Credentials" });
+        } else {
+          res.status(400).json({ success: false, message: "Invalid Credentials" });
+        }
     } catch (error) {
         console.log(error);
         res.status(400).json({ success: false, message: error });

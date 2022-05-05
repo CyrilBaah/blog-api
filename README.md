@@ -18,9 +18,13 @@ $ npm install
 ```sh
 $ sequelize db:migrate
 ```
-5. Run
+6. Run
 ```sh
 $ sequelize db:seed:all
+```
+6. Start application
+```sh
+$ npm start
 ```
 # Interact with all API endpoints locally
 [API Docs](http://127.0.0.1:3000/api-docs)
