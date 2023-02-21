@@ -11,11 +11,11 @@ pipeline {
       }
     }
         
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/CyrilBaah/blog-api.git'
-      }
-    }
+    // stage('Cloning Git') {
+    //   steps {
+    //     git 'https://github.com/CyrilBaah/blog-api.git'
+    //   }
+    // }
         
     stage('Install dependencies') {
       steps {
