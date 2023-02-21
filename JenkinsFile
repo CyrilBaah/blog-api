@@ -4,6 +4,12 @@ pipeline {
   tools {nodejs "node"}
     
   stages {
+
+     stage('Check node version') {
+      steps {
+        sh 'node --version'
+      }
+    }
         
     stage('Cloning Git') {
       steps {
