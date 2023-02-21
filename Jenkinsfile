@@ -28,5 +28,11 @@ pipeline {
          sh 'npm test'
       }
     }      
+
+    stage('Clean WS') {
+      steps {
+        cleanWs()
+      }
+    }
   }
 }
